@@ -1,0 +1,741 @@
+import 'package:flutter/material.dart';import 'package:flutter/material.dart';import 'package:flutter/material.dart';import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+import '../providers/weather_provider.dart';import 'package:provider/provider.dart';
+
+
+
+class WeatherScreen extends StatefulWidget {import '../providers/weather_provider.dart';import 'package:provider/provider.dart';
+
+  const WeatherScreen({super.key});
+
+
+
+  @override
+
+  State<WeatherScreen> createState() => _WeatherScreenState();class WeatherScreen extends StatefulWidget {import '../providers/weather_provider.dart';class WeatherScreen extends StatelessWidget {
+
+}
+
+  const WeatherScreen({super.key});
+
+class _WeatherScreenState extends State<WeatherScreen> {
+
+  @override  const WeatherScreen({super.key});
+
+  void initState() {
+
+    super.initState();  @override
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      _fetchWeather();  State<WeatherScreen> createState() => _WeatherScreenState();class WeatherScreen extends StatefulWidget {
+
+    });
+
+  }}
+
+
+
+  void _fetchWeather() {  const WeatherScreen({super.key});  @override
+
+    Provider.of<WeatherProvider>(context, listen: false).fetchWeather();
+
+  }class _WeatherScreenState extends State<WeatherScreen> {
+
+
+
+  String _getWeatherIcon(String iconCode) {  @override  Widget build(BuildContext context) {
+
+    switch (iconCode) {
+
+      case "01d":  void initState() {
+
+        return "☀️";
+
+      case "01n":    super.initState();  @override    return Scaffold(
+
+        return "🌙";
+
+      case "02d":    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      case "02n":
+
+        return "⛅";      _fetchWeather();  State<WeatherScreen> createState() => _WeatherScreenState();      appBar: AppBar(title: const Text('Weather')),
+
+      case "03d":
+
+      case "03n":    });
+
+      case "04d":
+
+      case "04n":  }}      body: Center(
+
+        return "☁️";
+
+      case "09d":
+
+      case "09n":
+
+        return "🌧️";  void _fetchWeather() {        child: Column(
+
+      case "10d":
+
+      case "10n":    Provider.of<WeatherProvider>(context, listen: false).fetchWeather();
+
+        return "🌦️";
+
+      case "11d":  }class _WeatherScreenState extends State<WeatherScreen> {          mainAxisAlignment: MainAxisAlignment.center,
+
+      case "11n":
+
+        return "⛈️";
+
+      case "13d":
+
+      case "13n":  String _getWeatherIcon(String iconCode) {  @override          children: [
+
+        return "❄️";
+
+      case "50d":    switch (iconCode) {
+
+      case "50n":
+
+        return "🌫️";      case "01d":  void initState() {            const Icon(Icons.wb_sunny, size: 80),
+
+      default:
+
+        return "🌡️";        return "☀️";
+
+    }
+
+  }      case "01n":    super.initState();            const SizedBox(height: 16),
+
+
+
+  @override        return "🌙";
+
+  Widget build(BuildContext context) {
+
+    return Scaffold(      case "02d":    WidgetsBinding.instance.addPostFrameCallback((_) {            const Text('22°C, Sunny'),
+
+      appBar: AppBar(
+
+        title: const Text("Weather"),      case "02n":
+
+        actions: [
+
+          IconButton(        return "⛅";      _fetchWeather();            const SizedBox(height: 8),
+
+            icon: const Icon(Icons.refresh),
+
+            onPressed: _fetchWeather,      case "03d":
+
+            tooltip: "Refresh Weather",
+
+          ),      case "03n":    });            const Text('Forecast: 22°C / 15°C, Clear'),
+
+        ],
+
+      ),      case "04d":
+
+      body: Consumer<WeatherProvider>(
+
+        builder: (context, provider, child) {      case "04n":  }            const SizedBox(height: 16),
+
+          if (provider.isLoading) {
+
+            return const Center(child: CircularProgressIndicator());        return "☁️";
+
+          }
+
+      case "09d":            ElevatedButton(
+
+          if (provider.error != null) {
+
+            return Center(      case "09n":
+
+              child: Column(
+
+                mainAxisAlignment: MainAxisAlignment.center,        return "🌧️";  void _fetchWeather() {              onPressed: () {},
+
+                children: [
+
+                  Text(      case "10d":
+
+                    "Error: ${provider.error}",
+
+                    textAlign: TextAlign.center,      case "10n":    Provider.of<WeatherProvider>(context, listen: false).fetchWeather();              child: const Text('Update Weather (Placeholder)'),
+
+                  ),
+
+                  const SizedBox(height: 16),        return "🌦️";
+
+                  ElevatedButton.icon(
+
+                    onPressed: _fetchWeather,      case "11d":  }            ),
+
+                    icon: const Icon(Icons.refresh),
+
+                    label: const Text("Retry"),      case "11n":
+
+                  ),
+
+                ],        return "⛈️";          ],
+
+              ),
+
+            );      case "13d":
+
+          }
+
+      case "13n":  String _getWeatherIcon(String iconCode) {        ),
+
+          if (provider.weatherInfo == null) {
+
+            return const Center(        return "❄️";
+
+              child: Text("No weather data available"),
+
+            );      case "50d":    switch (iconCode) {      ),
+
+          }
+
+      case "50n":
+
+          final weather = provider.weatherInfo!;
+
+          return Container(        return "🌫️";      case "01d":    );
+
+            decoration: BoxDecoration(
+
+              gradient: LinearGradient(      default:
+
+                begin: Alignment.topCenter,
+
+                end: Alignment.bottomCenter,        return "🌡️";        return "☀️";  }
+
+                colors: [
+
+                  const Color(0xFF7C83FD),    }
+
+                  const Color(0xFF7C83FD).withOpacity(0.7),
+
+                ],  }      case "01n":}
+
+              ),
+
+            ),
+
+            child: Column(
+
+              mainAxisAlignment: MainAxisAlignment.center,  @override        return "🌙";
+
+              children: [
+
+                Text(  Widget build(BuildContext context) {      case "02d":
+
+                  _getWeatherIcon(weather.iconCode),
+
+                  style: const TextStyle(fontSize: 80),    return Scaffold(      case "02n":
+
+                ),
+
+                const SizedBox(height: 16),      appBar: AppBar(        return "⛅";
+
+                Text(
+
+                  "${weather.temperature.toStringAsFixed(1)}°C",        title: const Text("Weather"),      case "03d":
+
+                  style: const TextStyle(
+
+                    fontSize: 48,        actions: [      case "03n":
+
+                    fontWeight: FontWeight.bold,
+
+                    color: Colors.white,          IconButton(      case "04d":
+
+                  ),
+
+                ),            icon: const Icon(Icons.refresh),      case "04n":
+
+                Text(
+
+                  weather.condition,            onPressed: _fetchWeather,        return "☁️";
+
+                  style: const TextStyle(
+
+                    fontSize: 24,            tooltip: "Refresh Weather",      case "09d":
+
+                    color: Colors.white,
+
+                  ),          ),      case "09n":
+
+                ),
+
+                const SizedBox(height: 32),        ],        return "🌧️";
+
+                Container(
+
+                  margin: const EdgeInsets.symmetric(horizontal: 32),      ),      case "10d":
+
+                  padding: const EdgeInsets.all(16),
+
+                  decoration: BoxDecoration(      body: Consumer<WeatherProvider>(      case "10n":
+
+                    color: Colors.white.withOpacity(0.2),
+
+                    borderRadius: BorderRadius.circular(16),        builder: (context, provider, child) {        return "🌦️";
+
+                  ),
+
+                  child: Column(          if (provider.isLoading) {      case "11d":
+
+                    children: [
+
+                      Row(            return const Center(child: CircularProgressIndicator());      case "11n":
+
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                        children: [          }        return "⛈️";
+
+                          Column(
+
+                            children: [      case "13d":
+
+                              const Icon(Icons.arrow_downward, color: Colors.white),
+
+                              const SizedBox(height: 8),          if (provider.error != null) {      case "13n":
+
+                              Text(
+
+                                "${weather.minTemp.toStringAsFixed(1)}°C",            return Center(        return "❄️";
+
+                                style: const TextStyle(
+
+                                  color: Colors.white,              child: Column(      case "50d":
+
+                                  fontWeight: FontWeight.bold,
+
+                                ),                mainAxisAlignment: MainAxisAlignment.center,      case "50n":
+
+                              ),
+
+                              const Text(                children: [        return "🌫️";
+
+                                "Min",
+
+                                style: TextStyle(color: Colors.white70),                  Text(      default:
+
+                              ),
+
+                            ],                    "Error: ${provider.error}",        return "🌡️";
+
+                          ),
+
+                          Column(                    textAlign: TextAlign.center,    }
+
+                            children: [
+
+                              const Icon(Icons.arrow_upward, color: Colors.white),                  ),  }
+
+                              const SizedBox(height: 8),
+
+                              Text(                  const SizedBox(height: 16),
+
+                                "${weather.maxTemp.toStringAsFixed(1)}°C",
+
+                                style: const TextStyle(                  ElevatedButton.icon(  @override
+
+                                  color: Colors.white,
+
+                                  fontWeight: FontWeight.bold,                    onPressed: _fetchWeather,  Widget build(BuildContext context) {
+
+                                ),
+
+                              ),                    icon: const Icon(Icons.refresh),    return Scaffold(
+
+                              const Text(
+
+                                "Max",                    label: const Text("Retry"),      appBar: AppBar(
+
+                                style: TextStyle(color: Colors.white70),
+
+                              ),                  ),        title: const Text("Weather"),
+
+                            ],
+
+                          ),                ],        actions: [
+
+                        ],
+
+                      ),              ),          IconButton(
+
+                      const Divider(color: Colors.white30),
+
+                      Row(            );            icon: const Icon(Icons.refresh),
+
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                        children: [          }            onPressed: _fetchWeather,
+
+                          Column(
+
+                            children: [            tooltip: "Refresh Weather",
+
+                              const Icon(Icons.water_drop, color: Colors.white),
+
+                              const SizedBox(height: 8),          if (provider.weatherInfo == null) {          ),
+
+                              Text(
+
+                                "${weather.humidity}%",            return const Center(        ],
+
+                                style: const TextStyle(
+
+                                  color: Colors.white,              child: Text("No weather data available"),      ),
+
+                                  fontWeight: FontWeight.bold,
+
+                                ),            );      body: Consumer<WeatherProvider>(
+
+                              ),
+
+                              const Text(          }        builder: (context, provider, child) {
+
+                                "Humidity",
+
+                                style: TextStyle(color: Colors.white70),          if (provider.isLoading) {
+
+                              ),
+
+                            ],          final weather = provider.weatherInfo!;            return const Center(child: CircularProgressIndicator());
+
+                          ),
+
+                          Column(          return Container(          }
+
+                            children: [
+
+                              const Icon(Icons.air, color: Colors.white),            decoration: BoxDecoration(
+
+                              const SizedBox(height: 8),
+
+                              Text(              gradient: LinearGradient(          if (provider.error != null) {
+
+                                "${weather.windSpeed} m/s",
+
+                                style: const TextStyle(                begin: Alignment.topCenter,            return Center(
+
+                                  color: Colors.white,
+
+                                  fontWeight: FontWeight.bold,                end: Alignment.bottomCenter,              child: Column(
+
+                                ),
+
+                              ),                colors: [                mainAxisAlignment: MainAxisAlignment.center,
+
+                              const Text(
+
+                                "Wind",                  const Color(0xFF7C83FD),                children: [
+
+                                style: TextStyle(color: Colors.white70),
+
+                              ),                  const Color(0xFF7C83FD).withOpacity(0.7),                  Text(
+
+                            ],
+
+                          ),                ],                    "Error: ${provider.error}",
+
+                        ],
+
+                      ),              ),                    textAlign: TextAlign.center,
+
+                    ],
+
+                  ),            ),                  ),
+
+                ),
+
+              ],            child: Column(                  const SizedBox(height: 16),
+
+            ),
+
+          );              mainAxisAlignment: MainAxisAlignment.center,                  ElevatedButton.icon(
+
+        },
+
+      ),              children: [                    onPressed: _fetchWeather,
+
+    );
+
+  }                Text(                    icon: const Icon(Icons.refresh),
+
+}
+                  _getWeatherIcon(weather.iconCode),                    label: const Text("Retry"),
+
+                  style: const TextStyle(fontSize: 80),                  ),
+
+                ),                ],
+
+                const SizedBox(height: 16),              ),
+
+                Text(            );
+
+                  "${weather.temperature.toStringAsFixed(1)}°C",          }
+
+                  style: const TextStyle(
+
+                    fontSize: 48,          if (provider.weatherInfo == null) {
+
+                    fontWeight: FontWeight.bold,            return const Center(
+
+                    color: Colors.white,              child: Text("No weather data available"),
+
+                  ),            );
+
+                ),          }
+
+                Text(
+
+                  weather.condition,          final weather = provider.weatherInfo!;
+
+                  style: const TextStyle(          return Container(
+
+                    fontSize: 24,            decoration: BoxDecoration(
+
+                    color: Colors.white,              gradient: LinearGradient(
+
+                  ),                begin: Alignment.topCenter,
+
+                ),                end: Alignment.bottomCenter,
+
+                const SizedBox(height: 32),                colors: [
+
+                Container(                  const Color(0xFF7C83FD),
+
+                  margin: const EdgeInsets.symmetric(horizontal: 32),                  const Color(0xFF7C83FD).withOpacity(0.7),
+
+                  padding: const EdgeInsets.all(16),                ],
+
+                  decoration: BoxDecoration(              ),
+
+                    color: Colors.white.withOpacity(0.2),            ),
+
+                    borderRadius: BorderRadius.circular(16),            child: Column(
+
+                  ),              mainAxisAlignment: MainAxisAlignment.center,
+
+                  child: Column(              children: [
+
+                    children: [                Text(
+
+                      Row(                  _getWeatherIcon(weather.iconCode),
+
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,                  style: const TextStyle(fontSize: 80),
+
+                        children: [                ),
+
+                          Column(                const SizedBox(height: 16),
+
+                            children: [                Text(
+
+                              const Icon(Icons.arrow_downward, color: Colors.white),                  "${weather.temperature.toStringAsFixed(1)}°C",
+
+                              const SizedBox(height: 8),                  style: const TextStyle(
+
+                              Text(                    fontSize: 48,
+
+                                "${weather.minTemp.toStringAsFixed(1)}°C",                    fontWeight: FontWeight.bold,
+
+                                style: const TextStyle(                    color: Colors.white,
+
+                                  color: Colors.white,                  ),
+
+                                  fontWeight: FontWeight.bold,                ),
+
+                                ),                Text(
+
+                              ),                  weather.condition,
+
+                              const Text(                  style: const TextStyle(
+
+                                "Min",                    fontSize: 24,
+
+                                style: TextStyle(color: Colors.white70),                    color: Colors.white,
+
+                              ),                  ),
+
+                            ],                ),
+
+                          ),                const SizedBox(height: 32),
+
+                          Column(                Container(
+
+                            children: [                  margin: const EdgeInsets.symmetric(horizontal: 32),
+
+                              const Icon(Icons.arrow_upward, color: Colors.white),                  padding: const EdgeInsets.all(16),
+
+                              const SizedBox(height: 8),                  decoration: BoxDecoration(
+
+                              Text(                    color: Colors.white.withOpacity(0.2),
+
+                                "${weather.maxTemp.toStringAsFixed(1)}°C",                    borderRadius: BorderRadius.circular(16),
+
+                                style: const TextStyle(                  ),
+
+                                  color: Colors.white,                  child: Column(
+
+                                  fontWeight: FontWeight.bold,                    children: [
+
+                                ),                      Row(
+
+                              ),                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                              const Text(                        children: [
+
+                                "Max",                          Column(
+
+                                style: TextStyle(color: Colors.white70),                            children: [
+
+                              ),                              const Icon(Icons.arrow_downward, color: Colors.white),
+
+                            ],                              const SizedBox(height: 8),
+
+                          ),                              Text(
+
+                        ],                                "${weather.minTemp.toStringAsFixed(1)}°C",
+
+                      ),                                style: const TextStyle(
+
+                      const Divider(color: Colors.white30),                                  color: Colors.white,
+
+                      Row(                                  fontWeight: FontWeight.bold,
+
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,                                ),
+
+                        children: [                              ),
+
+                          Column(                              const Text(
+
+                            children: [                                "Min",
+
+                              const Icon(Icons.water_drop, color: Colors.white),                                style: TextStyle(color: Colors.white70),
+
+                              const SizedBox(height: 8),                              ),
+
+                              Text(                            ],
+
+                                "${weather.humidity}%",                          ),
+
+                                style: const TextStyle(                          Column(
+
+                                  color: Colors.white,                            children: [
+
+                                  fontWeight: FontWeight.bold,                              const Icon(Icons.arrow_upward, color: Colors.white),
+
+                                ),                              const SizedBox(height: 8),
+
+                              ),                              Text(
+
+                              const Text(                                "${weather.maxTemp.toStringAsFixed(1)}°C",
+
+                                "Humidity",                                style: const TextStyle(
+
+                                style: TextStyle(color: Colors.white70),                                  color: Colors.white,
+
+                              ),                                  fontWeight: FontWeight.bold,
+
+                            ],                                ),
+
+                          ),                              ),
+
+                          Column(                              const Text(
+
+                            children: [                                "Max",
+
+                              const Icon(Icons.air, color: Colors.white),                                style: TextStyle(color: Colors.white70),
+
+                              const SizedBox(height: 8),                              ),
+
+                              Text(                            ],
+
+                                "${weather.windSpeed} m/s",                          ),
+
+                                style: const TextStyle(                        ],
+
+                                  color: Colors.white,                      ),
+
+                                  fontWeight: FontWeight.bold,                      const Divider(color: Colors.white30),
+
+                                ),                      Row(
+
+                              ),                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+                              const Text(                        children: [
+
+                                "Wind",                          Column(
+
+                                style: TextStyle(color: Colors.white70),                            children: [
+
+                              ),                              const Icon(Icons.water_drop, color: Colors.white),
+
+                            ],                              const SizedBox(height: 8),
+
+                          ),                              Text(
+
+                        ],                                "${weather.humidity}%",
+
+                      ),                                style: const TextStyle(
+
+                    ],                                  color: Colors.white,
+
+                  ),                                  fontWeight: FontWeight.bold,
+
+                ),                                ),
+
+              ],                              ),
+
+            ),                              const Text(
+
+          );                                "Humidity",
+
+        },                                style: TextStyle(color: Colors.white70),
+
+      ),                              ),
+
+    );                            ],
+
+  }                          ),
+
+}                          Column(
+                            children: [
+                              const Icon(Icons.air, color: Colors.white),
+                              const SizedBox(height: 8),
+                              Text(
+                                "${weather.windSpeed} m/s",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Text(
+                                "Wind",
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
